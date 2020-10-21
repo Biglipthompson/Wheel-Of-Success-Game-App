@@ -62,12 +62,34 @@ keyboard.addEventListener('click', (e) => { //keyboard is all the letters respon
         e.target.disabled = 'true';
         let letterFound = checkLetter(e.target); // Checks the correct letter off as found
         if (letterFound === null){ //If letter found then it cant be found again
-            missed += 1;  // Adds 1 to the already defined amount of 0
-            
+            tries[missed - 1].src = "images/lostHeart.png";
+            missed =+ 1;
         }
-        checkWin();
     }
+    checkWin();
 });
+
+
+
+function checkWin (){
+    const letter = document.getElementsByClassName('letter');
+    const show = document.getElementsByClassName('show');
+    let h2 = document.getElementsByTagName('header')
+
+    if (letter.length === show.length){
+        overlay.className = 'win';
+        h2.textContent = 'you won!';
+        overlay.style.display = 'flex';
+        btnReset.textContent = 'try again';
+        restart();
+
+    }else if (missed > 4 ){
+        h2.textContent.display = 'you lose'
+        overlay.style.display = 'flex;'
+        restart();
+
+        }   
+};
 
 
 
