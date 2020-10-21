@@ -1,16 +1,11 @@
 const keyboard = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 const btnReset = document.querySelector('.btn__reset');
+const tries = document.querySelectorAll('img');
 const overlay = document.getElementById('overlay');
 let missed = 0;
-
-btnReset.addEventListener('click', () => {
-    overlay.style.display = 'none';
-    
-});
-
-
 const phrases = [
+
     'hello javascript',
     'I love web development',
     'treehouse is awesome',
@@ -18,41 +13,65 @@ const phrases = [
     'Apple is a great company'
 ];
 
+btnReset.addEventListener('click', () => {
+    overlay.style.display = 'none';
+});
 
 // Getting a random phrase as an array for the div section
-const getRandomPhraseAsArray = (arr) => {
-    let phrase = Math.floor(Math.random())*arr.length;
-    let words = arr[phrases].split('');
+const getRandomPhraseAsArray = (arr) => {      // Passing array as an argument to the function
+    let phrase = Math.floor(Math.random()*arr.length);
+    let words = arr[phrase].split('');
     return words;
 };
-
-
-function addPhraseToDisplay (arr) {
-    for(let i = 0; i < arr.length; i++ ){
-    let li = document.createElement('li');
-    li.textContent = arr[i];
-    phrase.firstElementChild.appendChild(li);
-    if( arr[i] === " " ) {
-        li.className = 'space';
-        } else {
-        li.className = "letter";
-        }
-    }
-}
 
 // Calls function that adds phrase to display
 const phraseArray = getRandomPhraseAsArray(phrases);
 
+
+function addPhraseToDisplay (arr) {
+    for(let i = 0; i < arr.length; i++ ){
+    let li = document.createElement('li'); // Creating list items or letters in this case
+    li.textContent = arr[i];       // The text content is the letter the user chooses 
+    phrase.firstElementChild.appendChild(li); // Whichever letter they choose gets appended 
+    if( arr[i] === " " ) {   // If the index or chosen letter is a space =>
+        li.className = 'space'; //Change class name to space
+        } else {
+        li.className = "letter"; // Change class to letter 
+        }
+    }
+}
+
+addPhraseToDisplay(phraseArray);
+
+
 function checkLetter (button){
-    let letter = document.querySelectorAll('li');
-    let match = null;
-    for (let i = 0; i < letter.length i++){
-         if(letter[i].textContent === button.textContent){
-            letter[i].className =+ 'show';
-            
+    let letter = document.querySelectorAll('li'); //Letter spots within the phrase
+    let match = null; 
+    for (let i = 0; i < letter.length; i++){ // Letter length is the length of the phrase
+         if(letter[i].textContent === button.textContent){ //Compares the chosen letter to whatever the button says
+            letter[i].className =+ 'show'; // Gives the chosen letter the class name of show
          }
     }
+    return match;
 };
+
+keyboard.addEventListener('click', (e) => { //keyboard is all the letters responding to clicks
+    if (e.target.className === 'BUTTON'){ 
+        e.target.className === 'chosen' //This adds the button class if chosen is clicked
+    } if (e.target.className === 'chosen'){
+        e.target.disabled = 'true';
+        let letterFound = checkLetter(e.target); // Checks the correct letter off as found
+        if (letterFound === null){ //If letter found then it cant be found again
+            missed += 1;  // Adds 1 to the already defined amount of 0
+            tries [missed -1].style.display = none;
+        }
+        checkWin();
+    }
+});
+
+
+
+
 
 
 
