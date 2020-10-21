@@ -56,18 +56,21 @@ function checkLetter (button){
 };
 
 keyboard.addEventListener('click', (e) => { //keyboard is all the letters responding to clicks
-    if (e.target.className === 'BUTTON'){ 
+    if (e.target.tagName === 'BUTTON'){ 
         e.target.className === 'chosen' //This adds the button class if chosen is clicked
     } if (e.target.className === 'chosen'){
         e.target.disabled = 'true';
         let letterFound = checkLetter(e.target); // Checks the correct letter off as found
         if (letterFound === null){ //If letter found then it cant be found again
             missed += 1;  // Adds 1 to the already defined amount of 0
-            tries [missed -1].style.display = none;
+            
         }
         checkWin();
     }
 });
+
+
+
 
 
 
