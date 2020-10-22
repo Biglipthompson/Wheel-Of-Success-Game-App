@@ -50,6 +50,7 @@ function checkLetter (button){
     for (let i = 0; i < letter.length; i++){ // Letter length is the length of the phrase
          if(letter[i].textContent === button.textContent){ //Compares the chosen letter to whatever the button says
             letter[i].className =+ 'show'; // Gives the chosen letter the class name of show
+            match += letter[i].textContent;
          }
     }
     return match;
@@ -62,11 +63,11 @@ function checkLetter (button){
         e.target.disabled = 'true';
         let letterFound = checkLetter(e.target); // Checks the correct letter off as found
         if (letterFound === null){ //If letter found then it cant be found again
-            missed += 1;
-            tries[missed - 1].src = "images/lostHeart.png";
+             missed += 1;
+             tries[missed - 1].src = "images/lostHeart.png";
         }
+        checkWin();
     }
-    checkWin();
 });
 
 
@@ -78,25 +79,16 @@ function checkWin (){
 
     if (letter.length === show.length){
         overlay.className = 'win';
-        h2.textContent = 'you won!';
+        h2.overlay.textContent = 'you win'
         overlay.style.display = 'flex';
         btnReset.textContent = 'play again?';
-        restart();
 
     }else if (missed > 4 ){
         overlay.className = 'lose';
         h2.textContent = 'you lose';
         overlay.style.display = 'flex';
-        }   
+     }   
 };
-
-
-
-
-
-
-
-
 
 
     
