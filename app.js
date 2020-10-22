@@ -55,15 +55,15 @@ function checkLetter (button){
     return match;
 };
 
-keyboard.addEventListener('click', (e) => { //keyboard is all the letters responding to clicks
+  keyboard.addEventListener('click', (e) => { //keyboard is all the letters responding to clicks
     if (e.target.tagName === 'BUTTON'){ 
         e.target.className === 'chosen' //This adds the button class if chosen is clicked
     } if (e.target.className === 'chosen'){
         e.target.disabled = 'true';
         let letterFound = checkLetter(e.target); // Checks the correct letter off as found
         if (letterFound === null){ //If letter found then it cant be found again
+            missed += 1;
             tries[missed - 1].src = "images/lostHeart.png";
-            missed =+ 1;
         }
     }
     checkWin();
@@ -74,28 +74,21 @@ keyboard.addEventListener('click', (e) => { //keyboard is all the letters respon
 function checkWin (){
     const letter = document.getElementsByClassName('letter');
     const show = document.getElementsByClassName('show');
-    let h2 = document.getElementsByTagName('header')
+    let h2 = document.querySelector('.title')
 
     if (letter.length === show.length){
         overlay.className = 'win';
         h2.textContent = 'you won!';
         overlay.style.display = 'flex';
-        btnReset.textContent = 'try again';
+        btnReset.textContent = 'play again?';
         restart();
 
     }else if (missed > 4 ){
-        h2.textContent.display = 'you lose'
-        overlay.style.display = 'flex;'
-        restart();
-
+        overlay.className = 'lose';
+        h2.textContent = 'you lose';
+        overlay.style.display = 'flex';
         }   
 };
-
-
-
-
-
-
 
 
 
