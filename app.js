@@ -7,10 +7,10 @@ let missed = 0;
 const phrases = [
 
     'hello javascript',
-    'I love web development',
+    'i love web development',
     'treehouse is awesome',
-    'Technology is so fun',
-    'Apple is a great company'
+    'technology is so fun',
+    'apple is a great company'
 ];
 
 btnReset.addEventListener('click', () => {
@@ -58,8 +58,7 @@ function checkLetter (button){
 
   keyboard.addEventListener('click', (e) => { //keyboard is all the letters responding to clicks
     if (e.target.tagName === 'BUTTON'){ 
-        e.target.className === 'chosen' //This adds the button class if chosen is clicked
-    } if (e.target.className === 'chosen'){
+        e.target.className === 'chosen'; //This adds the button class if chosen is clicked
         e.target.disabled = 'true';
         let letterFound = checkLetter(e.target); // Checks the correct letter off as found
         if (letterFound === null){ //If letter found then it cant be found again
@@ -72,6 +71,8 @@ function checkLetter (button){
 
 
 
+
+
 function checkWin (){
     const letter = document.getElementsByClassName('letter');
     const show = document.getElementsByClassName('show');
@@ -79,13 +80,13 @@ function checkWin (){
 
     if (letter.length === show.length){
         overlay.className = 'win';
-        h2.overlay.textContent = 'you win'
+        h2.textContent = 'you win!!!';
         overlay.style.display = 'flex';
         btnReset.textContent = 'play again?';
 
     }else if (missed > 4 ){
         overlay.className = 'lose';
-        h2.textContent = 'you lose';
+        h2.textContent = 'You lose!!!';
         overlay.style.display = 'flex';
      }   
 };
