@@ -59,7 +59,7 @@ function checkLetter (button){
   keyboard.addEventListener('click', (e) => {     //keyboard is all the letters responding to clicks
     if (e.target.tagName === 'BUTTON'){ 
         e.target.className === 'chosen';  
-       
+    }       
      let letterFound = checkLetter(e.target); // Checks the correct letter off as found
     if (letterFound === null){    
         e.target.disabled = 'true';               //If letter found then it cant be found again
@@ -67,7 +67,7 @@ function checkLetter (button){
         tries[missed - 1].src = "images/lostHeart.png";
 }
         checkWin();
-    }
+    
 });
 
 
