@@ -49,22 +49,23 @@ function checkLetter (button){
     let match = null; 
     for (let i = 0; i < letter.length; i++){ // Letter length is the length of the phrase
          if(letter[i].textContent === button.textContent){ //Compares the chosen letter to whatever the button says
-            letter[i].className =+ 'show'; // Gives the chosen letter the class name of show
+            letter[i].className = 'show letter'; // Gives the chosen letter the class name of show
             match += letter[i].textContent;
          }
     }
     return match;
 };
 
-  keyboard.addEventListener('click', (e) => { //keyboard is all the letters responding to clicks
+  keyboard.addEventListener('click', (e) => {     //keyboard is all the letters responding to clicks
     if (e.target.tagName === 'BUTTON'){ 
-        e.target.className === 'chosen'; //This adds the button class if chosen is clicked
-        e.target.disabled = 'true';
-        let letterFound = checkLetter(e.target); // Checks the correct letter off as found
-        if (letterFound === null){ //If letter found then it cant be found again
-             missed += 1;
-             tries[missed - 1].src = "images/lostHeart.png";
-        }
+        e.target.className === 'chosen';  
+       
+     let letterFound = checkLetter(e.target); // Checks the correct letter off as found
+    if (letterFound === null){    
+        e.target.disabled = 'true';               //If letter found then it cant be found again
+        missed += 1;
+        tries[missed - 1].src = "images/lostHeart.png";
+}
         checkWin();
     }
 });
