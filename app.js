@@ -56,19 +56,21 @@ function checkLetter (button){
     return match;
 };
 
-  keyboard.addEventListener('click', (e) => {     //keyboard is all the letters responding to clicks
-    if (e.target.tagName === 'BUTTON'){ 
-        e.target.className === 'chosen';  
-    }       
-     let letterFound = checkLetter(e.target); // Checks the correct letter off as found
-    if (letterFound === null){    
-        e.target.disabled = 'true';               //If letter found then it cant be found again
-        missed += 1;
-        tries[missed - 1].src = "images/lostHeart.png";
-}
+
+keyboard.addEventListener('click', (e) => { 
+    if (e.target.tagName === 'BUTTON'){    
+        e.target.className = "chosen"; //adds class of chosen if button is clicked
+    } if (e.target.className === 'chosen'){
+        e.target.disabled = "true"; //disables button if it has been selected
+        let letterFound = checkLetter(e.target); 
+        if (letterFound === null){
+            missed += 1;
+            tries[missed - 1 ].src = "images/lostHeart.png"; // removes the hearts
+        }
         checkWin();
-    
+    }  
 });
+
 
 
 function checkWin (){
