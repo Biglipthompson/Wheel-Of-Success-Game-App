@@ -88,6 +88,7 @@ function checkWin (){
         overlay.className = 'lose';
         h2.textContent = 'You lose!!!';
         overlay.style.display = 'flex';
+        btnReset.textContent = 'play again?'
      }   
 };
 
