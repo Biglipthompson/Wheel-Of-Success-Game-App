@@ -82,13 +82,13 @@ function checkWin (){
         overlay.className = 'win';
         h2.textContent = 'you win!!!';
         overlay.style.display = 'flex';
-        btnReset.textContent = 'play again?';
+        btnReset.textContent = 'You win game over!';
 
     }else if (missed > 4 ){
         overlay.className = 'lose';
         h2.textContent = 'You lose!!!';
         overlay.style.display = 'flex';
-        btnReset.textContent = 'play again?'
+        btnReset.textContent = 'You love, Gameover!'
      }   
 };
 
